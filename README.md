@@ -12,10 +12,10 @@ If you follow our instructions below correctly, you should be able to restart yo
 
 ## Create and Configure Your Account ##
 
-For the class project and assignments, we offer an option to use Google Compute Engine for developing and testing your
-implementations. This tutorial lists the necessary steps of working on the assignments using Google Cloud. **We expect this tutorial to take about an hour. Don't get intimidated by the steps, we tried to make the tutorial detailed so that you are less likely to get stuck on a particular step. Please tag all questions related to Google Cloud with google_cloud on Piazza.**
+For the class final project, we offer an option to use Google Compute Engine for developing and testing your
+implementations. This tutorial lists the necessary steps of working on the assignments using Google Cloud. **We expect this tutorial to take about an hour. Don't get intimidated by the steps, we tried to make the tutorial detailed so that you are less likely to get stuck on a particular step. I will open a discussio section on Canvas for students who are having problem setting up their account.**
 
-This tutorial goes through how to set up your own Google Compute Engine (GCE) instance to work on the assignments. Each student will have $100 in credit throughout the quarter. When you sign up for the first time, you also receive $300 credits from Google by default. Please try to use the resources judiciously. But if $100 ends up not being enough, we will try to adjust this number as the quarter goes on.
+This tutorial goes through how to set up your own Google Compute Engine (GCE) instance to work on the project. Each student will have $50 in credit. When you sign up for the first time, you also receive $300 credits from Google by default (I think). Please try to use the resources judiciously. If $100 ends up not being enough, I will try to adjust this number as the semester goes on.
 
 First, if you don't have a Google Cloud account already, create one by going to the [Google Cloud homepage](https://cloud.google.com/?utm_source=google&utm_medium=cpc&utm_campaign=2015-q2-cloud-na-gcp-skws-freetrial-en&gclid=CP2e4PPpiNMCFU9bfgodGHsA1A "Title") and clicking on **Compute**. When you get to the next page, click on the blue **TRY IT FREE** button. If you are not logged into gmail, you will see a page that looks like the one below. Sign into your gmail account or create a new one if you do not already have an account.
 
@@ -47,7 +47,7 @@ Your account typically does not come with GPU quota. You have to explicitly requ
 
 FAQ: 
 **_Why don't I see any GPU-related quotas when I follow the instructions to filter for them?_**. 
-Check that you have a default zone and region set under **Compute Engine** > **Settings** > **Region** / **Zone**. Please set these to be `us-west1` and `us-west1-b`, respectively, and then try again.
+Check that you have a default zone and region set under **Compute Engine** > **Settings** > **Region** / **Zone**. Please set these to be `us-east1` and `us-west1-b`, respectively, and then try again.
 
 
 
