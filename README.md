@@ -47,7 +47,7 @@ Your account typically does not come with GPU quota. You have to explicitly requ
 
 FAQ: 
 **_Why don't I see any GPU-related quotas when I follow the instructions to filter for them?_**. 
-Check that you have a default zone and region set under **Compute Engine** > **Settings** > **Region** / **Zone**. Please set these to be `us-east1` and `us-west1-b`, respectively, and then try again.
+Check that you have a default zone and region set under **Compute Engine** > **Settings** > **Region** / **Zone**. Please set these to be `us-east1` and one of the zones, and then try again.
 
 
 
