@@ -19,7 +19,7 @@ You will receive an email from me with a link to redeem your $50 credit (If $50 
 
 ![](.img/email.png)
 
-This email should be sent relively quickly. If you do not find it in your main inbox look for it in your spam folder. Once you recieve this email you will be asked to click an additional link to verify your email. This in turn will send you an additional email with your $50 credit. Simply click on this link and you will be sent to a webpage where you simply have to agree to the terms and conditions. That's it. You've created your Google Cloud Platform (GCP) account.
+This email should be sent relatively quickly. If you do not find it in your main inbox look for it in your spam folder. Once you recieve this email you will be asked to click an additional link to verify your email. This in turn will send you an additional email with your $50 credit. Simply click on this link and you will be sent to a webpage where you simply have to agree to the terms and conditions. That's it. You've created your Google Cloud Platform (GCP) account.
 
 Note that at some point you will see a bar on the top allowing you to actiave $300 of credit since you are a new user. Feel free to do so, alothugh that requires you to insert a credit card (They say it will not be charged but I'm not 100% sure how it works). More details about that can be found in te bottom of this page.
 
