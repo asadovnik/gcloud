@@ -13,43 +13,33 @@ If you follow our instructions below correctly, you should be able to restart yo
 ## Create and Configure Your Account ##
 
 For the class final project, we offer an option to use Google Compute Engine for developing and testing your
-implementations. This tutorial lists the necessary steps of working on the assignments using Google Cloud. **We expect this tutorial to take about an hour. Don't get intimidated by the steps, we tried to make the tutorial detailed so that you are less likely to get stuck on a particular step. I will open a discussio section on Canvas for students who are having problem setting up their account.**
+implementations. This tutorial lists the necessary steps of working on the assignments using Google Cloud. **We expect this tutorial to take a little while. Don't get intimidated by the steps, we tried to make the tutorial detailed so that you are less likely to get stuck on a particular step. I will open a discussion section on Canvas for students who are having problem setting up their account.**
 
-This tutorial goes through how to set up your own Google Compute Engine (GCE) instance to work on the project. Each student will have $50 in credit. When you sign up for the first time, you also receive $300 credits from Google by default (I think). Please try to use the resources judiciously. If $100 ends up not being enough, I will try to adjust this number as the semester goes on.
+You will receive an email from me with a link to redeem your $50 credit (If $50 ends up not being enough, I will try to adjust this number as the semester goes on). When clicking that link you will be sent to a webpage where you will be requuired to enter your full name and email. You must use your UTK email. Note that the domain name is already placed there for you (can change between @utk.edu and @vols.utk.edu.)
 
-First, if you don't have a Google Cloud account already, create one by going to the [Google Cloud homepage](https://cloud.google.com/?utm_source=google&utm_medium=cpc&utm_campaign=2015-q2-cloud-na-gcp-skws-freetrial-en&gclid=CP2e4PPpiNMCFU9bfgodGHsA1A "Title") and clicking on **Compute**. When you get to the next page, click on the blue **TRY IT FREE** button. If you are not logged into gmail, you will see a page that looks like the one below. Sign into your gmail account or create a new one if you do not already have an account.
+![](.img/email.png)
 
-![](.img/launching-screen.png)
+This email should be sent relively quickly. If you do not find it in your main inbox look for it in your spam folder. Once you recieve this email you will be asked to click an additional link to verify your email. This in turn will send you an additional email with your $50 credit. Simply click on this link and you will be sent to a webpage where you simply have to agree to the terms and conditions. That's it. You've created your Google Cloud Platform (GCP) account.
 
-Click the appropriate **yes** or **no** button for the first option, and check **yes** for the second option after you have read the required agreements. Press the blue **Agree and continue** button to continue to the next page to enter the requested information (your name, billing address and credit card information). Remember to select "**Individual**" as "Account Type":
+Note that at some point you will see a bar on the top allowing you to actiave $300 of credit since you are a new user. Feel free to do so, alothugh that requires you to insert a credit card (They say it will not be charged but I'm not 100% sure how it works). More details about that can be found in te bottom of this page.
 
-![](.img/register-info.png)
+![](.img/terms.jpg)
 
-Once you have entered the required information, press the blue **Start my free trial** button. You will be greeted by a page like this:
-
-![](.img/welcome-screen.png)
-
-Click the "Google Cloud Platform" (in red circle), and it will take you to the main dashboard:
+You should now be able to go to the main dashboard by clicking on the "Google Cloud Platform" banner. Notice that through this tutorial all the menu options can be reached through the hamurger button on the top left.
 
 ![](.img/dashboard-screen.png)
 
-To change the name of your project, click on [**Go to project settings**](console.cloud.google.com/iam-admin/settings/project) under the **Project info** section.
-
 ## Request an increase in GPU quota
 
-Your account typically does not come with GPU quota. You have to explicitly request for it under **IAM Admin** > **Quotas**. Follow the instructions at:
+Your account typically does not come with GPU quota. **Please request the quota increase ASAP**, because they will take up to a week to process! If you don't have GPU quota, you will have to create a CPU-only VM first and create another GPU VM later, explained in the next section.
+
+Before you request a GPU you check that you have a default zone and region set under **Compute Engine** > **Settings** > **Region** / **Zone**. Please set these to be `us-east1` and one of the zones, and then try again.
+
+You have to explicitly request for it under **IAM Admin**  >**Quotas**.  Follow the instructions at:
 
 * [General quota instructions](https://cloud.google.com/compute/quotas#requesting_additional_quota)
 
 * [Step-by-step GPU-specific walk-through](https://stackoverflow.com/questions/45227064/how-to-request-gpu-quota-increase-in-google-cloud) (all answers in the link are useful)
-
-**Please request the quota increase ASAP**, because they will take up to a week to process! If you don't have GPU quota, you will have to create a CPU-only VM first and create another GPU VM later, explained in the next section.
-
-FAQ: 
-**_Why don't I see any GPU-related quotas when I follow the instructions to filter for them?_**. 
-Check that you have a default zone and region set under **Compute Engine** > **Settings** > **Region** / **Zone**. Please set these to be `us-east1` and one of the zones, and then try again.
-
-
 
 ## Google Cloud VM Image
 
@@ -57,11 +47,11 @@ Check that you have a default zone and region set under **Compute Engine** > **S
 2. Fill in `Deployment name` field with your preferred VM name.
 3. In `Machine type` field, change `2 vCPUs` to `1 vCPU`. You can always add more CPUs later if necessary.
 4. In `GPUs` field, you can follow one of the two paths:
-    * (a) If you have successfully requested GPU quota, you should set `Number of GPUs` to `1`. **GPU drivers and CUDA will be automatically installed _only if_ you select at least 1 GPU**. For our first assignment, you don't need GPUs. Since GPUs are very expensive, you can add them back when they become necessary later.
+    * (a) If you have successfully requested GPU quota, you should set `Number of GPUs` to `1`. **GPU drivers and CUDA will be automatically installed _only if_ you select at least 1 GPU**. It's better to do it this way, so wait for this step until you have receievd an your quota.
     * (b) If you don't have GPU quota yet, you must set `Number of GPUs` to `None`. WARNING: GPU drivers and CUDA will **NOT** be installed. All libraries will be CPU only. Once your GPU quota increase request is approved, you can follow path (a) to deploy a GPU-enabled image.
-5. In `Frameworks` field, change `TensorFlow 1.13 (Intel optimized ...)` to `PyTorch 1.0 + fast.ai`. We will have instructions for you later if you want Tensorflow.
+5. In `Frameworks` field, make sure `TensorFlow Enterprise 2.1 (Intel optimized ...)` is selected.
 6. Check the box `Install NVIDIA GPU driver automatically on first startup?`.
-7. Check the box `Enable access to JupyterLab via URL instead of SSH. (Beta)`.
+7. Check the box `Enable access to JupyterLab via URL instead of SSH. (Beta)` if you would like to try and set that up.
 8. Leave all other options as default.
 9. Click the blue botton `Deploy` at the end of the page.
 
@@ -69,7 +59,15 @@ Your configuration sheet should look similar to below:
 
 ![](.img/vm-config.png)
 
-### Change VM hardware
+
+Once you click deploy you will have to wait a while till everything gets set up (a few minutes). In the meantime you will see a screen saying that it is being deplyed. Once it has completed you will see a message that it was deployed successfullly(do not worry about the warnings). Note that this may fail due to not having enough resources. You may be able to change your zone to a different one to fix that.
+
+
+**Your virtual machine is now running.** You can always see all of your runnning virtual machines at: **Compute Engine** > **VM Instances**. This screen allows you to start and stop your instance. It also allows you to open a browser window to directly ssh into yout machine.
+
+![](.img/ssh.png)
+
+### Change VM hardware (only if needed)
 
 You can always change number of CPUs, number of GPUs, CPU memory, and GPU type after your VM has been created.
 
@@ -83,11 +81,72 @@ You can always change number of CPUs, number of GPUs, CPU memory, and GPU type a
 
 <img src=".img/machine-typ.png" width="50%">
 
+
+
+
+### Access your newly created VM
+
+Now that you have created your virtual GCE, you want to be able to connect to it from your computer. The rest of this tutorial goes over how to do that using the command line. First, download the Google Cloud SDK that is appropriate for your platform from [here](https://cloud.google.com/sdk/docs/) and follow their installation instructions. **NOTE: this tutorial assumes that you have performed step #4 on the website which they list as optional**.
+
+If `gcloud` command is not in system path, you can also reference it by its full path `/<DIRECTORY-WHERE-GOOGLE-CLOUD-IS-INSTALLED>/bin/gcloud`. See [this page](https://cloud.google.com/compute/docs/instances/connecting-to-instance "Title") for more detailed instructions.
+
+To ssh into your VM, go to your VM instance details page by clicking on its name. Under **Remote access** at the top of the page, you may either click directly on `SSH` which will launch a new browser window with the SSH session, or click on the drop-down arrow and select `View gcloud command` instead to retrieve the terminal command. It should look like
+
+```bash
+gcloud compute --project "<YOUR_PROJECT_ID>" ssh --zone "us-west1-b" "<YOUR_VM_NAME>"
+```
+
+![](.img/connect-to-vm.png)
+
+## Transferring Files From Your Instance To Your Computer ##
+
+You can transfer the files from GCP instance to your local laptop. There is an [easy command](https://cloud.google.com/sdk/gcloud/reference/compute/scp) for this purpose:
+
+```
+gcloud compute scp <user>@<instance-name>:/path/to/assignment1.zip /local/path
+```
+
+For example, to download files from our instance to the current folder:
+
+```
+gcloud compute scp tonystark@cs231:/home/shared/assignment1.zip .
+```
+
+The transfer works in both directions. To upload a file to GCE:
+
+```
+gcloud compute scp /my/local/file tonystark@cs231:/home/shared/
+```
+## BIG REMINDER: Make sure you stop your instances! ##
+
+Don't forget to stop your instance when you are done (by clicking on the stop button at the top of the page showing your instances). You can restart your instance and the downloaded software will still be available.
+
+We have seen students who left their instances running for many days and ran out of credits. This includes code development time. We encourage you to read up on Google Cloud, regularly keep track of your credits and not solely rely on our tutorials.
+
+
+
+# Appendecies 
+The follwing describes some extra constumization information from Stanford's CS231n: Convolutional Neural Networks for Visual Recognition. I have not tried any of this and will only be able to offer minimal assistance. It mostly relates to actiavting your $300 credit and activating jupyter notebooks. If you are not worried about that then you are basically done.
+
+
+## Activating your $300 credit
+
+Enter the requested information (your name, billing address and credit card information). Remember to select "**Individual**" as "Account Type":
+
+![](.img/register-info.png)
+
+Once you have entered the required information, press the blue **Start my free trial** button. You will be greeted by a page like this:
+
+![](.img/welcome-screen.png)
+
+Click the "Google Cloud Platform" (in red circle), and it will take you to the main dashboard:
+
+![](.img/dashboard-screen.png)
+
+To change the name of your project, click on [**Go to project settings**](console.cloud.google.com/iam-admin/settings/project) under the **Project info** section.
+
 ### Configure networking
 
-Wait until the deployment is finished. You should see a running VM with a green checkmark next to it on your [Compute Engine page](https://console.cloud.google.com/compute/).
-
-We need to tweak a few more settings to enable remote access to Jupyter notebooks.
 
 1. You must stop the instance first.
 2. Go to your VM instance's details at **Compute Engine** > **VM instances** > [click on instance name]. Click "edit" on your VM's page.
@@ -109,22 +168,6 @@ Your configuration sheets should look similar to below:
 Firewall Rules:
 
 <img src=".img/firewall.png" width="70%">
-
-
-### Access your newly created VM
-
-Now that you have created your virtual GCE, you want to be able to connect to it from your computer. The rest of this tutorial goes over how to do that using the command line. First, download the Google Cloud SDK that is appropriate for your platform from [here](https://cloud.google.com/sdk/docs/) and follow their installation instructions. **NOTE: this tutorial assumes that you have performed step #4 on the website which they list as optional**. When prompted, make sure you select `us-west1-b` as the time zone.
-
-If `gcloud` command is not in system path, you can also reference it by its full path `/<DIRECTORY-WHERE-GOOGLE-CLOUD-IS-INSTALLED>/bin/gcloud`. See [this page](https://cloud.google.com/compute/docs/instances/connecting-to-instance "Title") for more detailed instructions.
-
-To ssh into your VM, go to your VM instance details page by clicking on its name. Under **Remote access** at the top of the page, you may either click directly on `SSH` which will launch a new browser window with the SSH session, or click on the drop-down arrow and select `View gcloud command` instead to retrieve the terminal command. It should look like
-
-```bash
-gcloud compute --project "<YOUR_PROJECT_ID>" ssh --zone "us-west1-b" "<YOUR_VM_NAME>"
-```
-
-![](.img/connect-to-vm.png)
-
 
 ## First-time Setup Script
 
@@ -179,34 +222,3 @@ jupyter notebook
 The default port is `8888`, specified in `~/.jupyter/jupyter_notebook_config.py`.
 
 You can connect to your Jupyter session from your personal laptop. Open any browser and visit `35.185.240.182:8888`. The login password is the one you set with the setup script above.
-
-
-## Submission: Transferring Files From Your Instance To Your Computer ##
-
-When you are done with your assignments, run the submission script in your assignment folder to make a zip file. Please refer to specific instructions for each assignment.
-
-Once you create the zip file, e.g. `assignment1.zip`, you will transfer the file from GCE instance to your local laptop. There is an [easy command](https://cloud.google.com/sdk/gcloud/reference/compute/scp) for this purpose:
-
-```
-gcloud compute scp <user>@<instance-name>:/path/to/assignment1.zip /local/path
-```
-
-For example, to download files from our instance to the current folder:
-
-```
-gcloud compute scp tonystark@cs231:/home/shared/assignment1.zip .
-```
-
-The transfer works in both directions. To upload a file to GCE:
-
-```
-gcloud compute scp /my/local/file tonystark@cs231:/home/shared/
-```
-
-Another (perhaps easier) option proposed by a student is to directly download the zip file from Jupyter. After running the submission script and creating assignment1.zip, you can download that file directly from Jupyter. To do this, go to Jupyter Notebook and click on the zip file, which will be downloaded to your local computer.
-
-## BIG REMINDER: Make sure you stop your instances! ##
-
-Don't forget to stop your instance when you are done (by clicking on the stop button at the top of the page showing your instances). You can restart your instance and the downloaded software will still be available.
-
-We have seen students who left their instances running for many days and ran out of credits. You will be charged per hour when your instance is running. This includes code development time. We encourage you to read up on Google Cloud, regularly keep track of your credits and not solely rely on our tutorials.
